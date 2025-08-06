@@ -1,0 +1,43 @@
+version: 2
+
+sources:
+  - name: crm
+    description: Raw CRM export tables
+    tables:
+      - name: raw_leads
+        description: All leads ever created in the CRM
+        columns:
+          - name: id
+            tests: [unique, not_null]
+          - name: email
+            tests: [not_null]
+
+  - name: outreach
+    description: Raw campaign data from sequencer exports
+    tables:
+      - name: raw_campaigns
+        description: Per-step per-variant campaign performance rows
+        columns:
+          - name: id
+            tests: [unique, not_null]
+
+models:
+  - name: stg_leads
+    description: Cleaned and typed lead records from CRM
+    columns:
+      - name: lead_id
+        tests: [unique, not_null]
+      - name: email
+        tests: [not_null]
+      - name: domain
+        tests: [not_null]
+
+  - name: stg_campaigns
+    description: Cleaned campaign step data from sequencer export
+    columns:
+      - name: campaign_id
+        tests: [unique, not_null]
+      - name: sent
+        tests:
+          - not_null
+          - {{ positive_value() }}

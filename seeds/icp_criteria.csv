@@ -1,0 +1,6 @@
+criterion,weight,description
+industry,25,Industry vertical alignment with target ICP
+employee_count,20,Company headcount range
+country,15,Geographic market fit
+has_api,20,Product signals technical buyer
+annual_revenue_usd,20,Revenue proxy for budget availability
